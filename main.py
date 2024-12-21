@@ -1,6 +1,7 @@
 import sys
 from wc.word_counter import wc
 
+
 def run():
     file_name: str = sys.argv[1]
     c_option: bool = False
