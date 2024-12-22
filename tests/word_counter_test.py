@@ -1,7 +1,6 @@
 import pytest
 from wc.word_counter import wc
 
-
 # Helper function to create a temporary file for testing
 @pytest.fixture
 def create_temp_file(tmp_path):
