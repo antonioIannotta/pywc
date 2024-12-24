@@ -47,13 +47,6 @@ jobs:
     - name: Create Release
       uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.PYWC }} # Token provided automatically by GitHub Actions
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Token provided automatically by GitHub Actions
       with:
         tag_name: ${{ env.LATEST_TAG }} # Tag name for the release
-        release_name: Release ${{ env.LATEST_TAG }} # Name of the release
-        body: |
-          Changes in this Release:
-          - First Change
-          - Second Change
-        draft: false
-        prerelease: false
