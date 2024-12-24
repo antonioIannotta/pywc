@@ -6,11 +6,13 @@ name: Python application
 on:
   push:
     branches: [ "develop" ]
+    tags:
+      - 'v*.*.*'
   pull_request:
     branches: [ "develop" ]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -45,7 +47,6 @@ jobs:
         release_name: Release ${{ github.ref_name }} # Name of the release
         body: |
           Changes in this Release:
-          - First Change
-          - Second Change
+          - Applciation partially completed
         draft: false
         prerelease: false
