@@ -37,7 +37,7 @@ jobs:
       run: ruff format --diff --target-version=py39
       continue-on-error: true
     - name: Fetch All Tags
-      run: git fetch --tags
+      run: git fetch --tags --force
     - name: Get Latest Tag
       run: |
         LATEST_TAG=$(git describe --tags --abbrev=0)
@@ -48,6 +48,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Token provided automatically by GitHub Actions
       with:
+        fetch-depth: 0
         tag_name: ${{ env.LATEST_TAG }} # Tag name for the release
         release_name: Release ${{ env.LATEST_TAG }} # Name of the release
         body: |
