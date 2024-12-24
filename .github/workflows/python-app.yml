@@ -48,7 +48,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Token provided automatically by GitHub Actions
       with:
-        fetch-depth: 0
         tag_name: ${{ env.LATEST_TAG }} # Tag name for the release
         release_name: Release ${{ env.LATEST_TAG }} # Name of the release
         body: |
