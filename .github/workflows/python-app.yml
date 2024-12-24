@@ -5,13 +5,12 @@ name: Python application
 
 on:
   push:
-    tags:
-      - 'v*.*.*'
+    branches: [ "develop" ]
   pull_request:
     branches: [ "develop" ]
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   build:
@@ -37,15 +36,21 @@ jobs:
     - name: Check code formatting with Ruff
       run: ruff format --diff --target-version=py39
       continue-on-error: true
+    - name: Get Latest Tag
+      run: |
+        LATEST_TAG=$(git describe --tags --abbrev=0)
+        echo "Latest tag: $LATEST_TAG"
+        echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
     - name: Create Release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Token provided automatically by GitHub Actions
       with:
-        tag_name: ${{ github.ref_name }} # Tag name for the release
-        release_name: Release ${{ github.ref_name }} # Name of the release
+        tag_name: ${{ env.LATEST_TAG }} # Tag name for the release
+        release_name: Release ${{ tag_name }} # Name of the release
         body: |
           Changes in this Release:
-          - Applciation partially completed
+          - First Change
+          - Second Change
         draft: false
         prerelease: false
