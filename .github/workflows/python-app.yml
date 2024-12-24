@@ -47,7 +47,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Token provided automatically by GitHub Actions
       with:
         tag_name: ${{ env.LATEST_TAG }} # Tag name for the release
-        release_name: Release ${{ tag_name }} # Name of the release
+        release_name: Release ${{ env.LATEST_TAG }} # Name of the release
         body: |
           Changes in this Release:
           - First Change
